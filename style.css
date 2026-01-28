@@ -1,0 +1,150 @@
+/* ===== RESET ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== PAGE ===== */
+body {
+  background: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-inner {
+  width: 100%;
+  max-width: 1440px;
+  min-height: 83px;
+  padding: 16px 32px;
+
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+
+  background: rgba(147, 150, 177, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(207, 207, 207, 0.6);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* LOGO */
+.logo {
+  width: 28px;
+  height: 28px;
+  background: #000;
+  border-radius: 50%;
+}
+
+/* ===== NAV LINKS ===== */
+.nav-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.nav-links a {
+  position: relative;
+  text-decoration: none;
+
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  color: #111;
+  opacity: 0.85;
+
+  padding-bottom: 6px;
+}
+
+/* === HOVER LINE EFFECT === */
+.nav-links a::before,
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  height: 1px;
+  width: 0;
+  background: #000;
+  transition: width 1s ease;
+}
+
+.nav-links a::before { left: 50%; }
+.nav-links a::after  { right: 50%; }
+
+.nav-links a:hover::before,
+.nav-links a:hover::after {
+  width: 50%;
+}
+
+.nav-links a:hover {
+  opacity: 1;
+}
+
+/* ===== CONTENT ===== */
+.page {
+  display: flex;
+  justify-content: center;
+  padding: 80px 24px;
+}
+
+/* ===== VIEWER BOX ===== */
+.viewer-box {
+  width: 100%;
+  max-width: 600px;
+  aspect-ratio: 1 / 1;
+
+  background: #151515;
+  border-radius: 20px;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.2);
+
+  overflow: hidden;
+}
+
+/* CANVAS */
+.viewer-box canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ===== TABLET ===== */
+@media (max-width: 1024px) {
+  .nav-inner {
+    grid-template-columns: auto 1fr;
+    row-gap: 16px;
+  }
+
+  .nav-links {
+    justify-content: center;
+    gap: 32px;
+  }
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 640px) {
+  .nav-inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .logo {
+    margin: 0 auto;
+  }
+
+  .nav-links {
+    gap: 24px;
+  }
+}
