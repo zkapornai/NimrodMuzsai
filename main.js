@@ -78,3 +78,47 @@ function animate() {
   renderer.render(scene, camera);
 }
 animate();
+
+// ===== SCROLL ANIMATION PENTRU NUMBERS =====
+function animateCountUp(element, target) {
+  const duration = 2000; // 2 secunde
+  const start = Date.now();
+  
+  function update() {
+    const elapsed = Date.now() - start;
+    const progress = Math.min(elapsed / duration, 1);
+    const current = Math.floor(progress * target);
+    
+    element.textContent = current;
+    
+    if (progress < 1) {
+      requestAnimationFrame(update);
+    }
+  }
+  
+  update();
+}
+
+// Intersection Observer pentru detectare scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      const numberValues = document.querySelectorAll('.number-value');
+      numberValues.forEach((element) => {
+        const target = parseInt(element.getAttribute('data-target'));
+        // Verifica daca animatia nu a rulat deja
+        if (element.textContent === '0') {
+          animateCountUp(element, target);
+        }
+      });
+      // Opriteste observatorul dupa prima triggerare
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+
+// Incepe observarea Numbersbox-ului
+const numbersbox = document.querySelector('.Numbersbox');
+if (numbersbox) {
+  observer.observe(numbersbox);
+}
