@@ -8,9 +8,10 @@ const container = document.getElementById('viewerBox');
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x111111);
 
-// CAMERA
+// CAMERA (top-down oriented so the model's underside never becomes visible)
 const camera = new THREE.PerspectiveCamera(60, 1, 0.1, 1000);
-camera.position.set(0, 1.2, 1.5);
+camera.position.set(0, 3, 1.5);
+camera.lookAt(0, 0, 0);
 
 // RENDERER
 const renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -30,7 +31,11 @@ scene.add(dir);
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 controls.enableZoom = false;
-controls.enabled = false; // ⛔ alapból OFF
+controls.enabled = false; // alapból OFF
+// Restrict vertical rotation so camera never goes below the model (no underside)
+controls.enablePan = false;
+controls.minPolarAngle = 0;              // top
+controls.maxPolarAngle = Math.PI / 2;   // horizon (can't go under)
 
 let model;
 
@@ -53,7 +58,7 @@ loader.load('./silo_zsiganak.glb', (gltf) => {
   controls.update();
 });
 
-// 🖱️ HOVER LOGIKA
+//  HOVER LOGIKA
 let isHovering = false;
 
 container.addEventListener('mouseenter', () => {
@@ -71,7 +76,7 @@ function animate() {
   requestAnimationFrame(animate);
 
   if (isHovering && model) {
-    model.rotation.z += 0.003; // 🔥 csak hoverkor forog
+    model.rotation.z += 0.003; //  csak hoverkor forog
     controls.update();
   }
 
