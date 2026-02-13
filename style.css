@@ -7,8 +7,7 @@
   --color-6: #d1c7bd;
 
   --font-primary: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
-
-  --font-size-xs: 14px; /* kicsit nagyobb olvashatóság */
+  --font-size-xs: 14px;
   --font-size-lg: 36px;
 
   --letter-spacing-wide: 0.18em;
@@ -32,6 +31,8 @@
   --space-xl: 48px;
   --space-2xl: 64px;
   --space-3xl: 96px;
+
+  --gap-img: 3px;
 }
 
 * {
@@ -41,12 +42,15 @@
 }
 
 body {
-  background: var(--color-1);
   font-family: var(--font-primary);
-  margin: 20px 0;
+  background: var(--color-1);
   color: var(--color-2);
+  margin: 20px 0;
 }
 
+/* ======================
+   NAVBAR
+====================== */
 .navbar {
   width: 100%;
   display: flex;
@@ -54,7 +58,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 100;
-  background-color:#72383d;
+  background: var(--color-2);
 }
 
 .nav-inner {
@@ -62,14 +66,10 @@ body {
   max-width: var(--container-max);
   min-height: 83px;
   padding: var(--space-md) var(--space-xl);
-
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
-
   backdrop-filter: var(--blur-nav);
-  -webkit-backdrop-filter: var(--blur-nav);
-
   border: 1px solid var(--color-2);
   box-shadow: var(--shadow-nav);
 }
@@ -89,15 +89,13 @@ body {
 }
 
 .nav-links a {
-  position: relative;
   text-decoration: none;
-
   font-size: var(--font-size-xs);
   letter-spacing: var(--letter-spacing-wide);
   color: var(--color-1);
   opacity: 0.85;
-
   padding-bottom: var(--space-xs);
+  position: relative;
 }
 
 .nav-links a::before,
@@ -108,40 +106,65 @@ body {
   height: 1px;
   width: 0;
   background: var(--color-1);
-  transition: width 1s ease;
+  transition: width 0.3s ease;
 }
 
 .nav-links a::before { left: 50%; }
 .nav-links a::after  { right: 50%; }
 
 .nav-links a:hover::before,
-.nav-links a:hover::after {
-  width: 50%;
-}
+.nav-links a:hover::after { width: 50%; }
+.nav-links a:hover { opacity: 1; }
 
-.nav-links a:hover {
-  opacity: 1;
-}
-
+/* ======================
+   PAGE WRAPPER
+====================== */
 .page {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   padding: var(--space-3xl) var(--space-lg);
 }
 
-/* 3 INFO CARD */
+/* ======================
+   TOP GALLERY
+====================== */
+.top-gallery {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto var(--space-3xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-img);
+  padding: var(--gap-img);
+}
 
+.top-gallery-row {
+  display: flex;
+  gap: var(--gap-img);
+}
+
+.top-gallery-row.top { justify-content: flex-start; }
+.top-gallery-row.bottom { justify-content: flex-end; }
+
+.top-gallery-row img {
+  flex: 1 1 0;
+  width: calc((100% - 2 * var(--gap-img)) / 3);
+  height: 240px;
+  object-fit: cover;
+}
+
+/* ======================
+   INFO SECTION
+====================== */
 .info-section {
   width: 100%;
   max-width: var(--container-max);
-  margin: 0 auto;
+  margin: 0 auto var(--space-3xl);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-3xl);
   text-align: center;
-  margin-bottom: var(--space-3xl);
 }
 
 .info-card h3 {
@@ -167,31 +190,15 @@ body {
   transition: 0.3s ease;
 }
 
-.info-card button:hover {
-  background: var(--color-4);
-}
-
-/* Responsive */
-
-@media (max-width: 1024px) {
-  .gallery-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .info-section {
-    grid-template-columns: 1fr;
-    gap: var(--space-2xl);
-  }
-}
+.info-card button:hover { background: var(--color-4); }
 
 .Numbersbox {
   width: 100%;
-  padding: 10px;
-  margin-bottom: var(--space-3xl); /* nagyobb távolság a következő section előtt */
   display: flex;
   justify-content: space-around;
   align-items: center;
   gap: var(--space-2xl);
+  padding: 10px;
   background-color: var(--color-3);
 }
 
@@ -216,104 +223,89 @@ body {
   letter-spacing: var(--letter-spacing-small);
 }
 
+
 .viewer-box {
   width: 100%;
   max-width: var(--viewer-max);
   aspect-ratio: 1 / 1;
-
   background: var(--color-6);
   border-radius: var(--radius-sm);
   border: 1px solid var(--color-5);
   box-shadow: var(--shadow-box);
-
   overflow: hidden;
+  margin-top: var(--space-3xl);
 }
 
-.viewer-box canvas {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-@media (max-width: 1024px) {
-  .nav-inner {
-    grid-template-columns: auto 1fr;
-    row-gap: var(--space-md);
-  }
-
-  .nav-links {
-    gap: var(--space-xl);
-  }
-}
-
-@media (max-width: 640px) {
-  .nav-inner {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .logo {
-    margin: 0 auto;
-  }
-
-  .nav-links {
-    gap: var(--space-lg);
-  }
-}
+.viewer-box canvas { width: 100%; height: 100%; display: block; }
 
 .newsletter {
   width: 100%;
-  margin: var(--space-3xl) auto;
+  margin: var(--space-3xl) 0;
   padding: var(--space-lg);
   border-radius: var(--radius-sm);
   background: var(--color-6);
   box-shadow: var(--shadow-box);
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
 }
 
 .newsletter h3 {
   font-size: var(--font-size-lg);
   color: var(--color-2);
-  margin-bottom: var(--space-xs);
 }
 
 .newsletter p {
   font-size: var(--font-size-xs);
   color: var(--color-3);
-  margin-bottom: var(--space-md);
 }
 
 .nl-form {
   display: flex;
+  flex-direction: column;
   gap: var(--space-xs);
-  justify-content: center;
-  flex-wrap: wrap;
+  width: 100%;
+  max-width: 400px;
+  align-items: stretch;
 }
 
 .nl-form input[type="email"] {
-  flex: 1 1 250px;
   padding: 10px 14px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--color-5);
   outline: none;
+  width: 100%;
 }
 
 .nl-form button {
   padding: 10px 30px;
-  border: none;
   border-radius: var(--radius-sm);
+  border: none;
   background: var(--color-2);
   color: var(--color-1);
   cursor: pointer;
   transition: 0.3s ease;
+  width: 100%;
 }
 
-.nl-form button:hover {
-  background: var(--color-4);
-}
+.nl-form button:hover { background: var(--color-4); }
 
 .nl-status {
   margin-top: var(--space-sm);
   font-size: var(--font-size-xs);
   color: var(--color-3);
+}
+
+@media (max-width: 1024px) {
+  .info-section { grid-template-columns: 1fr; gap: var(--space-2xl); }
+  .nav-inner { grid-template-columns: auto 1fr; row-gap: var(--space-md); }
+  .nav-links { gap: var(--space-xl); }
+}
+
+@media (max-width: 640px) {
+  .nav-inner { grid-template-columns: 1fr; text-align: center; }
+  .logo { margin: 0 auto; }
+  .nav-links { gap: var(--space-lg); }
+  .top-gallery-row img { width: 100%; height: auto; }
 }
