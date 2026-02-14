@@ -127,3 +127,75 @@ const numbersbox = document.querySelector('.Numbersbox');
 if (numbersbox) {
   observer.observe(numbersbox);
 }
+
+// Continuous seamless carousel (no libs)
+// Duplicates track children, then translates left continuously. When offset >= originalWidth -> offset -= originalWidth
+
+(function () {
+  const SPEED = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--carousel-speed')) || 0.04; // px per ms
+  const track = document.getElementById('carousel-track');
+  if (!track) return;
+
+  // clone children to allow seamless loop
+  const children = Array.from(track.children);
+  if (children.length === 0) return;
+
+  // duplicate content
+  const cloneFragment = document.createDocumentFragment();
+  children.forEach(node => {
+    const c = node.cloneNode(true);
+    cloneFragment.appendChild(c);
+  });
+  track.appendChild(cloneFragment);
+
+  // measure original width (half the total after cloning)
+  // we wait one tick to ensure layout
+  requestAnimationFrame(() => {
+    const totalWidth = track.scrollWidth;
+    const originalWidth = totalWidth / 2;
+
+    let offset = 0;
+    let last = performance.now();
+
+    function step(now) {
+      const dt = now - last;
+      last = now;
+
+      offset += SPEED * dt; // increase offset (px)
+      if (offset >= originalWidth) {
+        // loop back seamlessly
+        offset -= originalWidth;
+      }
+      track.style.transform = `translateX(${-offset}px)`;
+      requestAnimationFrame(step);
+    }
+
+    requestAnimationFrame(step);
+
+    // optional: pause on hover of track or newsletter (nice UX)
+    const viewport = track.parentElement;
+    const pauseTargets = [viewport, document.querySelector('.nl-form')];
+    let paused = false;
+
+    pauseTargets.forEach(el => {
+      if (!el) return;
+      el.addEventListener('mouseenter', () => { paused = true; track.style.opacity = '0.98'; });
+      el.addEventListener('mouseleave', () => { paused = false; });
+    });
+
+    // modify loop step to respect pause
+    // (redefine step to check paused)
+    last = performance.now();
+    function stepPaused(now) {
+      const dt = now - last;
+      last = now;
+      if (!paused) {
+        offset += SPEED * dt;
+        if (offset >= originalWidth) offset -= originalWidth;
+        track.style.transform = `translateX(${-offset}px)`;
+      }
+      requestAnimationFrame(stepPaused);
+    }
+    requestAnimationFrame(stepPaused);
+  });
+})();

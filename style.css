@@ -116,23 +116,18 @@ body {
 .nav-links a:hover::after { width: 50%; }
 .nav-links a:hover { opacity: 1; }
 
-/* ======================
-   PAGE WRAPPER
-====================== */
+
 .page {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: var(--space-3xl) var(--space-lg);
+  padding: var(--space-2xl) var(--space-lg);
 }
 
-/* ======================
-   TOP GALLERY
-====================== */
 .top-gallery {
   width: 100%;
   max-width: var(--container-max);
-  margin: 0 auto var(--space-3xl);
+  margin-bottom: var(--space-2xl);
   display: flex;
   flex-direction: column;
   gap: var(--gap-img);
@@ -308,4 +303,133 @@ body {
   .logo { margin: 0 auto; }
   .nav-links { gap: var(--space-lg); }
   .top-gallery-row img { width: 100%; height: auto; }
+}
+
+/* carousel container */
+.carousel-wrap{
+  overflow:visible; /* allow visible effect / slight kilógás if needed */
+}
+
+/* viewport shows a slice of the infinite track */
+.carousel-viewport{
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  border-radius:var(--radius);
+}
+
+/* track is long, will be translated by JS */
+.carousel-track{
+  display:flex;
+  gap:var(--gap);
+  align-items:stretch;
+  will-change:transform;
+}
+
+/* card styling (frame similar to your screenshot) */
+.testimonial-card{
+  min-width: 360px;            /* fixed card width for even spacing */
+  max-width: 360px;
+  background:var(--color-1);
+  border-radius:12px;
+  padding:18px;
+  box-shadow:var(--shadow-sm);
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  color:var(--color-3);
+  flex-shrink:0;
+}
+
+/* small top row with stars */
+.tc-top{display:flex;justify-content:flex-start;align-items:center;gap:10px}
+.stars{color:#caa45f;font-size:16px;letter-spacing:4px}
+
+/* quote + meta */
+.tc-quote{font-size:var(--fs-sm);line-height:1.45}
+.tc-meta{font-size:13px;color:#7b7b7b}
+
+/* responsive: collapse to single column on small screens */
+@media (max-width: 980px){
+  .nl-test-wrap{grid-template-columns: 1fr; gap:18px}
+  .carousel-wrap{order:2}
+  .newsletter{order:1}
+  .testimonial-card{min-width:calc(100% - 32px);max-width:calc(100% - 32px)}
+}
+
+/* hide scrollbar on track */
+.carousel-track::-webkit-scrollbar{display:none}
+
+.stars {
+  color: #caa45f;
+  letter-spacing: 4px;
+  font-size: 16px;
+}
+
+.latest-projects {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: var(--space-3xl) auto;
+}
+
+.latest-projects h2 {
+  text-align: center;
+  font-size: var(--font-size-lg);
+  letter-spacing: var(--letter-spacing-wide);
+  margin-bottom: var(--space-xl);
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: 160px;
+  gap: 12px;
+}
+
+.p-item {
+  overflow: hidden;
+  border-radius: 12px;
+  background: var(--color-5);
+}
+
+.p-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.p-item.big {
+  grid-column: span 3;
+  grid-row: span 2;
+}
+
+.p-item.tall {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.p-item.wide {
+  grid-column: span 3;
+  grid-row: span 1;
+}
+
+@media (max-width: 1024px) {
+
+  .projects-grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 140px;
+  }
+
+  .p-item.big,
+  .p-item.tall,
+  .p-item.wide {
+    grid-column: span 3;
+    grid-row: span 1;
+  }
+
+  .testimonials-inner {
+    transform: none;
+  }
+
 }

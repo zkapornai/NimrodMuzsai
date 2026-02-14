@@ -1,122 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>3D Viewer Box</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <head>
+    <meta charset="UTF-8" />
+    <title>3D Viewer Box</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="./style.css">
 
-  <!-- THREE IMPORTMAP -->
-  <script type="importmap">
-  {
-    "imports": {
-      "three": "https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.module.js",
-      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.152.2/examples/jsm/"
+    <link rel="stylesheet" href="./style.css">
+
+
+    <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.152.2/examples/jsm/"
+      }
     }
-  }
-  </script>
-</head>
+    </script>
+  </head>
 
-<body>
+  <body>
 
-  <header class="navbar">
-    <div class="nav-inner">
-      <div class="logo"></div>
+    <header class="navbar">
+      <div class="nav-inner">
+        <div class="logo"></div>
 
-      <nav class="nav-links">
-        <a href="#">LOOK BOOK</a>
-        <a href="services.html">SERVICES</a>
-        <a href="about.html">ABOUT US</a>
-        <a href="contact.html">CONTACT</a>
-      </nav>
-    </div>
-  </header>
-
-  <main class="page">
-    <section class="top-gallery">
-      <div class="top-gallery-row top">
-        <img src="Image10.png" alt="Image 1">
-        <img src="Image8.png" alt="Image 2">
-        <img src="Image7.png" alt="Image 3">
+        <nav class="nav-links">
+          <a href="services.html">SZOLGÁLTATÁSOK</a>
+          <a href="about.html">RÓLUNK</a>
+          <a href="look.html">MUNKÁINK</a>
+          <a href="contact.html">ELÉRHETŐSÉG</a>
+        </nav>
       </div>
-      <div class="top-gallery-row bottom">
-        <img src="Image5 (1).png" alt="Image 4">
-        <img src="Image7.png" alt="Image 5">
-        <img src="Image16.png" alt="Image 6">
+    </header>
+
+    <main class="page">
+      <section class="top-gallery">
+        <div class="top-gallery-row top">
+          <img src="Image10.png" alt="Image 1">
+          <img src="Image8.png" alt="Image 2">
+          <img src="Image7.png" alt="Image 3">
+        </div>
+        <div class="top-gallery-row bottom">
+          <img src="Image5 (1).png" alt="Image 4">
+          <img src="Image7.png" alt="Image 5">
+          <img src="Image16.png" alt="Image 6">
+        </div>
+      </section>
+
+
+      <section class="info-section">
+
+        <div class="info-card">
+          <h3>Maximalizáljuk a tereket, nem a költségeket.</h3>
+          <p>
+            Minden négyzetméter számít – fedezd fel, hogyan alakítjuk otthonodat hatékonyabbá és stílusossá.
+          </p>
+        </div>
+
+        <div class="info-card">
+          <h3>Az otthonod rejtett potenciálja.</h3>
+          <p>
+            Lépj be a terek új dimenziójába – precíz felméréssel és kreatív tervezéssel varázsolunk új életet a lakásodba.
+          </p>
+        </div>
+
+        <div class="info-card">
+          <h3>Tér, forma, lehetőség.</h3>
+          <p>
+            Ne hagyd, hogy a hely kihasználatlan maradjon – szakértői állapot- és lakásfelméréssel hozunk ki többet minden szögből.
+          </p>
+        </div>
+
+      </section>
+
+        <div class="Numbersbox">
+          <div class="number-item">
+            <span class="number-value" data-target="30">0</span>
+            <span class="number-label">Elégedett vásárló</span>
+          </div>
+          <div class="number-item">
+            <span class="number-value" data-target="96">0</span>
+            <span class="number-label">Teljesített projekt</span>
+          </div>
+          <div class="number-item">
+            <span class="number-value" data-target="420">0</span>
+            <span class="number-label">Sikeres felmérés</span>
+          </div>
+        </div>
+        <div class="viewer-box" id="viewerBox"></div>
+
+      <section class="newsletter">
+        <h3>Feliratkozom a hírlevélre</h3>
+        <p>Exkluzív frissítések és újdonságok közvetlenül az e-mail fiókodba.</p>
+        <form class="nl-form">
+          <input type="email" placeholder="E-mail címed" required>
+          <button type="submit">Feliratkozom</button>
+        </form>
+        <div class="nl-status"></div>
+      </section>
+
+
+      <aside class="carousel-wrap" aria-label="Vélemények">
+        <div class="carousel-viewport" aria-hidden="false">
+          <div class="carousel-track" id="carousel-track">
+            <article class="testimonial-card">
+              <div class="tc-top">
+                <div class="stars">★★★★★</div>
+              </div>
+              <p class="tc-quote">Hihetetlen precizitás, gyors és letisztult munka. Pont azt kaptuk, amit elképzeltünk.</p>
+              <div class="tc-meta">Éva • Iroda projekt — 2025.10.29</div>
+            </article>
+
+            <article class="testimonial-card">
+              <div class="tc-top"><div class="stars">★★★★★</div></div>
+              <p class="tc-quote">Modern, szakmailag erős csapat. Részletes felmérés és átgondolt megoldások.</p>
+              <div class="tc-meta">Balázs • Lakásfelújítás — 2025.08.12</div>
+            </article>
+
+            <article class="testimonial-card">
+              <div class="tc-top"><div class="stars">★★★★☆</div></div>
+              <p class="tc-quote">Gyors kommunikáció és tiszta rendszer. Minden négyzetmétert kihasználtak.</p>
+              <div class="tc-meta">Kata • Belsőépítészet — 2025.05.03</div>
+            </article>
+
+            <article class="testimonial-card">
+              <div class="tc-top"><div class="stars">★★★★★</div></div>
+              <p class="tc-quote">Precíz, profi, és kreatív — ajánlom mindenkinek.</p>
+              <div class="tc-meta">Gábor • Bemutatóterem — 2025.03.20</div>
+            </article>
+
+          </div>
+        </div>
+      </aside>
+
+    </section>
+
+    <section class="latest-projects">
+      <h2>Latest Projects</h2>
+
+      <div class="projects-grid">
+        <div class="p-item big"><img src="IMG_7232.PNG másolata" alt=""></div>
+        <div class="p-item tall"><img src="IMG_7232.PNG másolata" alt=""></div>
+        <div class="p-item"><img src="Image16.png" alt=""></div>
+        <div class="p-item wide"><img src="Image5 (1).png" alt=""></div>
+        <div class="p-item"><img src="Image16.png" alt=""></div>
+        <div class="p-item tall"><img src="Image8.png" alt=""></div>
       </div>
     </section>
 
+    </main>
 
-    <section class="info-section">
-
-      <div class="info-card">
-        <h3>Lorem Ipsum</h3>
-        <p>
-          dfjvnfojnvdfion<br>
-          fipgom fipomv<br>
-          ifopmvipofvmidfop<br>
-          mvdfiobmvnfdokpv<br>
-          moim
-        </p>
-        <button>MORE</button>
-      </div>
-
-      <div class="info-card">
-        <h3>Lorem Ipsum</h3>
-        <p>
-          dfjvnfojnvdfion<br>
-          fipgom fipomv<br>
-          ifopmvipofvmidfop<br>
-          mvdfiobmvnfdokpv<br>
-          moim
-        </p>
-        <button>MORE</button>
-      </div>
-
-      <div class="info-card">
-        <h3>Lorem Ipsum</h3>
-        <p>
-          dfjvnfojnvdfion<br>
-          fipgom fipomv<br>
-          ifopmvipofvmidfop<br>
-          mvdfiobmvnfdokpv<br>
-          moim
-        </p>
-        <button>MORE</button>
-      </div>
-
-    </section>
-
-      <div class="Numbersbox">
-        <div class="number-item">
-          <span class="number-value" data-target="30">0</span>
-          <span class="number-label">Elégedett vásárló</span>
-        </div>
-        <div class="number-item">
-          <span class="number-value" data-target="96">0</span>
-          <span class="number-label">Teljesített projekt</span>
-        </div>
-        <div class="number-item">
-          <span class="number-value" data-target="420">0</span>
-          <span class="number-label">Sikeres felmérés</span>
-        </div>
-      </div>
-      <div class="viewer-box" id="viewerBox"></div>
-
-    <section class="newsletter">
-      <h3>Feliratkozom a hírlevélre</h3>
-      <p>Exkluzív frissítések és újdonságok közvetlenül az e-mail fiókodba.</p>
-      <form class="nl-form">
-        <input type="email" placeholder="E-mail címed" required>
-        <button type="submit">Feliratkozom</button>
-      </form>
-      <div class="nl-status"></div>
-    </section>
-
-  </main>
-
-  <script type="module" src="main.js"></script>
-</body>
+    <script type="module" src="main.js"></script>
+  </body>
 </html>
