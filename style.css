@@ -48,9 +48,6 @@ body {
   margin: 20px 0;
 }
 
-/* ======================
-   NAVBAR
-====================== */
 .navbar {
   width: 100%;
   display: flex;
@@ -149,9 +146,6 @@ body {
   object-fit: cover;
 }
 
-/* ======================
-   INFO SECTION
-====================== */
 .info-section {
   width: 100%;
   max-width: var(--container-max);
@@ -188,13 +182,17 @@ body {
 .info-card button:hover { background: var(--color-4); }
 
 .Numbersbox {
-  width: 100%;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding: 20px; /* kisebb magasság */
+  
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-  gap: var(--space-2xl);
-  padding: 10px;
-  background-color: var(--color-3);
+  gap: 120px;
+
+  background: var(--color-3);
 }
 
 .number-item {
@@ -205,11 +203,20 @@ body {
 }
 
 .number-value {
-  font-size: var(--font-size-lg);
-  font-weight: bold;
-  color: var(--color-1);
-  line-height: 1.2;
+  font-size: 32px;
+  font-weight: 800;
+  color: white;
+  letter-spacing: -1px;
+  position: relative;
 }
+
+.number-value::after {
+  content: "+";
+  font-size: 24px;
+  margin-left: 6px;
+  opacity: 0.7;
+}
+
 
 .number-label {
   font-size: var(--font-size-xs);
@@ -433,3 +440,130 @@ body {
   }
 
 }
+
+:root{
+  --motion-fast: 160ms;
+  --motion-medium: 360ms;
+  --motion-slow: 700ms;
+  --motion-ease: cubic-bezier(.2,.9,.2,1);
+  --reveal-y: 18px;
+  --hover-lift: -8px;
+  --card-shadow-lev: 0 18px 40px rgba(0,0,0,0.12);
+}
+
+/* Respect user preference */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}
+
+/* --- page-load subtle fade + upward slide for main blocks --- */
+.page, .nav-inner {
+  opacity: 0;
+  transform: translateY(var(--reveal-y));
+  transition: opacity var(--motion-slow) var(--motion-ease), transform var(--motion-slow) var(--motion-ease);
+}
+.page.is-ready, .nav-inner.is-ready {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- nav link hover: smoother underline and slight translateY --- */
+.nav-links a {
+  transition: color var(--motion-fast) var(--motion-ease), transform var(--motion-medium) var(--motion-ease);
+  will-change: transform;
+}
+.nav-links a:hover, .nav-links a:focus {
+  transform: translateY(-2px);
+  color: var(--color-1);
+}
+
+/* --- logo micro-interaction --- */
+.logo {
+  transition: transform var(--motion-medium) var(--motion-ease), box-shadow var(--motion-medium);
+  will-change: transform;
+}
+.logo:hover, .logo:focus {
+  transform: scale(1.06);
+  box-shadow: var(--card-shadow-lev);
+}
+
+/* --- top gallery images hover lift + subtle scale --- */
+.top-gallery-row img {
+  transition: transform var(--motion-medium) var(--motion-ease), box-shadow var(--motion-medium);
+  will-change: transform;
+  transform-origin: center;
+}
+.top-gallery-row img:hover, .top-gallery-row img:focus {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: var(--card-shadow-lev);
+}
+
+/* --- info-cards: hover lift + shadow --- */
+.info-card {
+  transition: transform var(--motion-medium) var(--motion-ease), box-shadow var(--motion-medium), background var(--motion-medium);
+  will-change: transform;
+}
+.info-card:hover, .info-card:focus-within {
+  transform: translateY(-6px);
+  box-shadow: var(--card-shadow-lev);
+}
+
+/* --- testimonial cards: micro parallax + scale on hover --- */
+.testimonial-card {
+  transition: transform var(--motion-medium) var(--motion-ease), box-shadow var(--motion-medium);
+  will-change: transform;
+}
+.testimonial-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: var(--card-shadow-lev);
+}
+
+/* --- latest project items: hover zoom in image --- */
+.p-item img {
+  transition: transform var(--motion-medium) var(--motion-ease), filter var(--motion-medium);
+  will-change: transform;
+}
+.p-item:hover img, .p-item:focus-within img {
+  transform: scale(1.04);
+  filter: saturate(1.05) contrast(1.02);
+}
+
+/* --- newsletter button / input focus --- */
+.nl-form input, .nl-form button {
+  transition: box-shadow var(--motion-fast) var(--motion-ease), transform var(--motion-fast);
+}
+.nl-form input:focus {
+  box-shadow: 0 8px 18px rgba(114,56,61,0.08);
+  outline: none;
+}
+.nl-form button:hover, .nl-form button:focus {
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 0 12px 30px rgba(114,56,61,0.12);
+}
+
+/* --- reveal helper classes (used by JS) --- */
+.reveal {
+  opacity: 0;
+  transform: translateY(var(--reveal-y));
+  transition: opacity var(--motion-slow) var(--motion-ease), transform var(--motion-slow) var(--motion-ease);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* stagger utility (small delays) */
+.reveal.delay-1 { transition-delay: 80ms; }
+.reveal.delay-2 { transition-delay: 160ms; }
+.reveal.delay-3 { transition-delay: 240ms; }
+.reveal.delay-4 { transition-delay: 320ms; }
+
+/* --- small touch polish for keyboard navigation --- */
+a:focus, button:focus, input:focus {
+  outline: 2px solid rgba(114,56,61,0.14);
+  outline-offset: 2px;
+}
+
+/* --- subtle tilt on hovering gallery rows (parallax feel) --- */
+.top-gallery-row:hover img { transform-origin: 50% 30%; }
