@@ -6,6 +6,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const page = document.querySelector(".page");
   const nav = document.querySelector(".nav-inner");
 
+  // ==== NEWSLETTER height match numbers box ====
+  const numbersBox = document.querySelector('.numbers-box');
+  const newsletterEl = document.querySelector('.newsletter');
+  function syncNewsletterHeight() {
+    if (numbersBox && newsletterEl) {
+      newsletterEl.style.minHeight = numbersBox.offsetHeight + 'px';
+    }
+  }
+  syncNewsletterHeight();
+  window.addEventListener('resize', syncNewsletterHeight);
+
   requestAnimationFrame(() => {
     page?.classList.add("is-ready");
     nav?.classList.add("is-ready");
@@ -56,3 +67,28 @@ document.addEventListener("DOMContentLoaded", () => {
   numbers.forEach(n => numberObserver.observe(n));
 
 });
+
+// ===== SIMPLE AUTO CAROUSEL =====
+const track = document.getElementById("carousel-track");
+
+if (track) {
+  let position = 0;
+
+  function animate() {
+    position -= 0.5;
+    if (Math.abs(position) >= track.scrollWidth / 2) {
+      position = 0;
+    }
+    track.style.transform = `translateX(${position}px)`;
+    requestAnimationFrame(animate);
+  }
+
+  requestAnimationFrame(animate);
+}
+
+const numbersBox = document.querySelector('.numbers-box');
+const newsletterEl = document.querySelector('.newsletter');
+if (numbersBox && newsletterEl) {
+  const h = numbersBox.offsetHeight;
+  newsletterEl.style.minHeight = h + 'px';
+}

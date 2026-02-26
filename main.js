@@ -123,7 +123,7 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.5 });
 
 // Incepe observarea Numbersbox-ului
-const numbersbox = document.querySelector('.Numbersbox');
+const numbersbox = document.querySelector('.numbers-box');
 if (numbersbox) {
   observer.observe(numbersbox);
 }

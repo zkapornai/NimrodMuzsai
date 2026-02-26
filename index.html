@@ -31,11 +31,9 @@
       </div>
     </header>
 
-    <!-- hero section: full‑width background video that plays once on load -->
     <section class="hero">
       <video class="hero-video" playsinline muted autoplay preload="auto">
         <source src="vidi.mp4" type="video/mp4">
-        <!-- fallback text for older browsers -->
         Your browser does not support HTML5 video.
       </video>
       <div class="hero-content">
@@ -47,19 +45,35 @@
     </section>
 
     <main class="page">
-      <section class="top-gallery">
-        <div class="top-gallery-row top">
-          <img src="Image10.png" alt="Image 1">
-          <img src="Image8.png" alt="Image 2">
-          <img src="Image7.png" alt="Image 3">
-        </div>
-        <div class="top-gallery-row bottom">
-          <img src="Image5 (1).png" alt="Image 4">
-          <img src="Image7.png" alt="Image 5">
-          <img src="Image16.png" alt="Image 6">
-        </div>
-      </section>
+      <div class="numbers-box">
+        <div class="numbers-inner">
 
+          <div class="number-item">
+            <div class="number-icon">
+              <img src="architect-icon-architect-icon-simple-architect-icon-social-media-app-web-design-vector-illustration-340056912.webp" alt="Architect Icon">
+            </div>
+            <span class="number-value" data-target="30">0</span>
+            <span class="number-label">Elégedett vásárló</span>
+          </div>
+
+          <div class="number-item">
+            <div class="number-icon">
+              <img src="184-1846336_project-management-icon-transparent-project-management-icon-png.png" alt="Projekt ikon">
+            </div>
+            <span class="number-value" data-target="96">0</span>
+            <span class="number-label">Teljesített projekt</span>
+          </div>
+
+          <div class="number-item">
+            <div class="number-icon">
+              <img src="customer-satisfaction-icon-style-free-vector.jpg" alt="Felmérés ikon">
+            </div>
+            <span class="number-value" data-target="420">0</span>
+            <span class="number-label">Sikeres felmérés</span>
+          </div>
+
+        </div>
+      </div>
 
       <section class="info-section">
 
@@ -86,65 +100,54 @@
 
       </section>
 
-        <div class="Numbersbox">
-          <div class="number-item">
-            <span class="number-value" data-target="30">0</span>
-            <span class="number-label">Elégedett vásárló</span>
-          </div>
-          <div class="number-item">
-            <span class="number-value" data-target="96">0</span>
-            <span class="number-label">Teljesített projekt</span>
-          </div>
-          <div class="number-item">
-            <span class="number-value" data-target="420">0</span>
-            <span class="number-label">Sikeres felmérés</span>
-          </div>
-        </div>
-        <div class="viewer-box" id="viewerBox"></div>
+        <div class="media-section">
+        <div class="sidebar">
+          <section class="newsletter">
+            <h3>Feliratkozom a hírlevélre</h3>
+            <p>Exkluzív frissítések és újdonságok közvetlenül az e-mail fiókodba.</p>
+            <form class="nl-form">
+              <input type="email" placeholder="E-mail címed" required>
+              <button type="submit">Feliratkozom</button>
+            </form>
+            <div class="nl-status"></div>
+          </section>
 
-      <section class="newsletter">
-        <h3>Feliratkozom a hírlevélre</h3>
-        <p>Exkluzív frissítések és újdonságok közvetlenül az e-mail fiókodba.</p>
-        <form class="nl-form">
-          <input type="email" placeholder="E-mail címed" required>
-          <button type="submit">Feliratkozom</button>
-        </form>
-        <div class="nl-status"></div>
-      </section>
+          <aside class="carousel-wrap" aria-label="Vélemények">
+            <div class="carousel-viewport" aria-hidden="false">
+              <div class="carousel-track" id="carousel-track">
+                <article class="testimonial-card">
+                  <div class="tc-top">
+                    <div class="stars">★★★★★</div>
+                  </div>
+                  <p class="tc-quote">Hihetetlen precizitás, gyors és letisztult munka. Pont azt kaptuk, amit elképzeltünk.</p>
+                  <div class="tc-meta">Éva • Iroda projekt — 2025.10.29</div>
+                </article>
 
+                <article class="testimonial-card">
+                  <div class="tc-top"><div class="stars">★★★★★</div></div>
+                  <p class="tc-quote">Modern, szakmailag erős csapat. Részletes felmérés és átgondolt megoldások.</p>
+                  <div class="tc-meta">Balázs • Lakásfelújítás — 2025.08.12</div>
+                </article>
 
-      <aside class="carousel-wrap" aria-label="Vélemények">
-        <div class="carousel-viewport" aria-hidden="false">
-          <div class="carousel-track" id="carousel-track">
-            <article class="testimonial-card">
-              <div class="tc-top">
-                <div class="stars">★★★★★</div>
+                <article class="testimonial-card">
+                  <div class="tc-top"><div class="stars">★★★★☆</div></div>
+                  <p class="tc-quote">Gyors kommunikáció és tiszta rendszer. Minden négyzetmétert kihasználtak.</p>
+                  <div class="tc-meta">Kata • Belsőépítészet — 2025.05.03</div>
+                </article>
+
+                <article class="testimonial-card">
+                  <div class="tc-top"><div class="stars">★★★★★</div></div>
+                  <p class="tc-quote">Precíz, profi, és kreatív — ajánlom mindenkinek.</p>
+                  <div class="tc-meta">Gábor • Bemutatóterem — 2025.03.20</div>
+                </article>
+
               </div>
-              <p class="tc-quote">Hihetetlen precizitás, gyors és letisztult munka. Pont azt kaptuk, amit elképzeltünk.</p>
-              <div class="tc-meta">Éva • Iroda projekt — 2025.10.29</div>
-            </article>
-
-            <article class="testimonial-card">
-              <div class="tc-top"><div class="stars">★★★★★</div></div>
-              <p class="tc-quote">Modern, szakmailag erős csapat. Részletes felmérés és átgondolt megoldások.</p>
-              <div class="tc-meta">Balázs • Lakásfelújítás — 2025.08.12</div>
-            </article>
-
-            <article class="testimonial-card">
-              <div class="tc-top"><div class="stars">★★★★☆</div></div>
-              <p class="tc-quote">Gyors kommunikáció és tiszta rendszer. Minden négyzetmétert kihasználtak.</p>
-              <div class="tc-meta">Kata • Belsőépítészet — 2025.05.03</div>
-            </article>
-
-            <article class="testimonial-card">
-              <div class="tc-top"><div class="stars">★★★★★</div></div>
-              <p class="tc-quote">Precíz, profi, és kreatív — ajánlom mindenkinek.</p>
-              <div class="tc-meta">Gábor • Bemutatóterem — 2025.03.20</div>
-            </article>
-
-          </div>
+            </div>
+          </aside>
         </div>
-      </aside>
+
+        <div class="viewer-box" id="viewerBox"></div>
+      </div>
 
     </section>
     </main>
